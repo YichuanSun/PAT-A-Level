@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1534486253 source:d:\code resourse\pat training\1029\main.cpp
+	<iostream>
+	<climits>
+	<queue>
+
