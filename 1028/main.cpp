@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct student  {
+    string num;
+    string name;
+    int score;
+};
+vector<student> sts;
+bool cmp1(student a,student b)  {
+    return a.num<b.num;
+}
+bool cmp2(student a,student b)  {
+    if (a.name==b.name)
+        return a.num<b.num;
+    return a.name<b.name;
+}
+bool cmp3(student a,student b)  {
+    if (a.score==b.score)
+        return a.num<b.num;
+    return a.score<b.score;
+}
+void sot1();
+void sot2();
+void sot3();
+int main()  {
+    int n,k;
+    student stemp;
+    ios::sync_with_stdio(false);
+    cin.tie(0),cout.tie(0);
+    cin>>n>>k;
+    for (int i=0;i<n;i++)   {
+        cin>>stemp.num;
+        cin>>stemp.name;
+        cin>>stemp.score;
+        sts.push_back(stemp);
+    }
+    switch(k)   {
+        case 1: sot1();break;
+        case 2: sot2();break;
+        case 3: sot3();break;
+    }
+    return 0;
+}
+
+void sot1() {
+    sort(sts.begin(),sts.end(),cmp1);
+    for (int i=0;i<sts.size();i++)  {
+        cout<<sts[i].num<<' ';
+        cout<<sts[i].name<<' ';
+        cout<<sts[i].score<<endl;
+    }
+}
+
+void sot2() {
+    sort(sts.begin(),sts.end(),cmp2);
+    for (int i=0;i<sts.size();i++)  {
+        cout<<sts[i].num<<' ';
+        cout<<sts[i].name<<' ';
+        cout<<sts[i].score<<endl;
+    }
+}
+
+void sot3() {
+    sort(sts.begin(),sts.end(),cmp3);
+    for (int i=0;i<sts.size();i++)  {
+        cout<<sts[i].num<<' ';
+        cout<<sts[i].name<<' ';
+        cout<<sts[i].score<<endl;
+    }
+}
+
