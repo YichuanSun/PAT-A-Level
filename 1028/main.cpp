@@ -1,3 +1,6 @@
+/*
+ДцдквЛИі
+*/
 #include <bits/stdc++.h>
 using namespace std;
 struct student  {
@@ -23,6 +26,8 @@ void sot1();
 void sot2();
 void sot3();
 int main()  {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
     int n,k;
     student stemp;
     cin>>n>>k;
