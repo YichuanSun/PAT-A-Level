@@ -25,13 +25,9 @@ void sot3();
 int main()  {
     int n,k;
     student stemp;
-    ios::sync_with_stdio(false);
-    cin.tie(0),cout.tie(0);
     cin>>n>>k;
     for (int i=0;i<n;i++)   {
-        cin>>stemp.num;
-        cin>>stemp.name;
-        cin>>stemp.score;
+        cin>>stemp.num>>stemp.name>>stemp.score;
         sts.push_back(stemp);
     }
     switch(k)   {
@@ -44,28 +40,18 @@ int main()  {
 
 void sot1() {
     sort(sts.begin(),sts.end(),cmp1);
-    for (int i=0;i<sts.size();i++)  {
-        cout<<sts[i].num<<' ';
-        cout<<sts[i].name<<' ';
-        cout<<sts[i].score<<endl;
-    }
+    for (unsigned i=0;i<sts.size();i++)
+        cout<<sts[i].num<<' '<<sts[i].name<<' '<<sts[i].score<<endl;
 }
 
 void sot2() {
     sort(sts.begin(),sts.end(),cmp2);
-    for (int i=0;i<sts.size();i++)  {
-        cout<<sts[i].num<<' ';
-        cout<<sts[i].name<<' ';
-        cout<<sts[i].score<<endl;
-    }
+    for (unsigned i=0;i<sts.size();i++)
+        cout<<sts[i].num<<' '<<sts[i].name<<' '<<sts[i].score<<endl;
 }
 
 void sot3() {
     sort(sts.begin(),sts.end(),cmp3);
-    for (int i=0;i<sts.size();i++)  {
-        cout<<sts[i].num<<' ';
-        cout<<sts[i].name<<' ';
-        cout<<sts[i].score<<endl;
-    }
+    for (unsigned i=0;i<sts.size();i++)
+        cout<<sts[i].num<<' '<<sts[i].name<<' '<<sts[i].score<<endl;
 }
-
