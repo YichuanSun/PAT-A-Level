@@ -1,27 +1,36 @@
 #include <bits/stdc++.h>
-#define INF 0x7FFFFFFF
+#define N 100005
 using namespace std;
-struct st{
-    int pre,nex;
+struct Node{
+    int now,nex;
     char c;
-};
-vector<st> sts;
-bool jud(st a)  {
-    if (a.nex==-1)  return true;
-    else return false;
-}
+}node[N];
+bool visit[N];
 int main()  {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cout<<INF<<endl;
-    st nst;
-    int des1,des2,n;
-    cin>>des1>>des2>>n;
+    int s1,s2,n,tnow,tnex;
+    char tc;
+    scanf("%d%d%d",&s1,&s2,&n);
     for (int i=0;i<n;i++)   {
-        cin>>nst.pre>>nst.c>>nst.nex;
-        sts.push_back(nst);
+        scanf("%d %c %d",&tnow,&tc,&tnex);
+        node[tnow].now=tnow;
+        node[tnow].c=tc;
+        node[tnow].nex=tnex;
     }
-    std::vector<st>::iterator ite=find_if(sts.end(),sts.begin(),jud);
-    cout<<(*ite).pre<<endl;
+    while (s1!=-1)  {
+        visit[s1]=true;
+        s1=node[s1].nex;
+    }
+    while (s2!=-1)  {
+        if (visit[s2])  {
+            printf("%05d\n",s2);
+            return 0;
+        }
+        visit[s2]=true;
+        s2=node[s2].nex;
+    }
+    if (s2==-1) cout<<-1<<endl;
     return 0;
 }
+
+
+
