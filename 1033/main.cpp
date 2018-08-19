@@ -5,7 +5,7 @@ struct ps{
     double p,d;
     void read() {cin>>p>>d;}
     bool operator < (const ps &a)const{
-        return (a.p==p)?(d<a.d):(p<a.p);
+        return (a.d==d)?(p<a.p):(d<a.d);
     }
 };
 ps road[505];
@@ -43,7 +43,7 @@ int main()  {
     dfs(0,0,0);
     cout.setf(ios::fixed);
     if (road[0].d>0)    cout<<"The maximum travel distance = 0.00"<<endl;
-    if (maxdis<1.0*D)   cout<<"The maximum travel distance = "<<setprecision(2)<<maxdis<<endl;
-    else    cout<<mincost<<endl;
+    else if (maxdis<1.0*D)   cout<<"The maximum travel distance = "<<setprecision(2)<<maxdis<<endl;
+    else    cout<<setprecision(2)<<mincost<<endl;
     return 0;
 }
