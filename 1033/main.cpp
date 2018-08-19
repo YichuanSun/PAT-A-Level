@@ -27,7 +27,7 @@ void dfs(int x, double cost, double rest)
     {
         if (a[i].d - a[x].d <= C*d)         //如果能够行驶到第i站
         {
-            if (a[i].p <= a[x].p)           //如果第i站油价更便宜
+            if (a[i].p <= a[x].p)           //如果第i站油价比当前站更便宜
             {
                 double k = (a[i].d - a[x].d) / d;       //k是从x站到i站所需的油数
                 if (k > rest)                           //如果靠当前剩下的油到不了第i站
@@ -35,20 +35,22 @@ void dfs(int x, double cost, double rest)
                 else                                    //如果到得了第i站
                     dfs(i, cost, rest - k);             //就计算更新剩余油，到第i站继续dfs
                 return;
-            }
-            if (minx == x || a[i].p < a[minx].p)        //记录油价最便宜的那一站
+            }       //路上碰到第一个油价更便宜的，这个if就return，这段函数就终止了。如果没碰到，就继续下面的操作
+                    //如果第i站油价比当前站更贵
+            if (minx == x || a[i].p < a[minx].p)        //记录除当前站外油价最便宜的那一站，或者现在的第i站
                 minx = i;
         }
     }
-    if (a[x].d + C*d >= D)
+        //如果能运行到这里，上面的循环结束后，就意味着当前站点是现在加满油能到达的站点油费当中最便宜的
+    if (a[x].d + C*d >= D)      //如果当前站加满油就能到终点站
     {
         if ((D - a[x].d) / d - rest >= 0)
             mincost = min(mincost, cost + ((D - a[x].d) / d - rest)*a[x].p);
     }
-    if (minx > x)
+    if (minx > x)   //如果下一个次便宜的站点在当前站点之后
     {
         double k = (C - rest)*a[x].p;
-        dfs(minx, cost + k, C - (a[minx].d - a[x].d) / d);
+        dfs(minx, cost + k, C - (a[minx].d - a[x].d) / d);      //就在当前站点加满油，继续行驶到minx站点
     }
 }
 
@@ -64,7 +66,7 @@ int main()
         return 0;
     }
     dfs(0, 0, 0);
-    if (maxdis < D)
+    if (maxdis < D)     //从第一个站点出发
         printf("The maximum travel distance = %.2lf\n", maxdis);
     else
         printf("%.2lf\n", mincost);
