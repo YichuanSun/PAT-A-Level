@@ -22,19 +22,27 @@ int main()  {
     sort(product.begin(),product.end(),cmp);
     int spot1,spot2;
     for (spot1=0;coupon[spot1]>0&&spot1<coupon.size();spot1++);
-    reverse(coupon.begin()+spot1,coupon.end());
     for (spot2=0;product[spot2]>0&&spot2<product.size();spot2++);
-    reverse(product.begin()+spot2,product.end());
     int cnt=0;
+    double value;
     for (int i=0;i<coupon.size();i++)   {
         if (cnt>=product.size())    break;
-        double value=coupon[i]*product[cnt];
+        value=coupon[i]*product[cnt];
         if (value>=0)   {
             ans+=value;
             cnt++;
         }
-        else if (coupon[i]>0&&product[cnt]<0)    continue;
-        else if (coupon[i]<0&&product[cnt]>0)    cnt++;
+        if (i>=spot1||cnt>=spot2) break;
+    }
+    cnt=product.size()-1;
+    for (int i=coupon.size()-1;i>=spot1;i--)    {
+        if (cnt<spot2)  break;
+        value=coupon[i]*product[cnt];
+        if (value>=0)   {
+            ans+=value;
+            cnt--;
+        }
+        if (i<spot1||cnt<spot2) break;
     }
     cout<<ans<<endl;
     return 0;
