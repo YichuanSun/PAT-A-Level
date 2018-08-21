@@ -16,16 +16,15 @@ bool cmphtol(int a,int b)   {
     return a>=b;
 }
 Node* buildTree(int l,int r,bool cmp(int,int))    {
-    if (!isBST) return NULL;    //新添的
-    if (l>r)   return NULL;     //去掉=
+    if (!isBST) return NULL;
+    if (l>r)   return NULL;
     Node* root=new Node();
     root->val=save[l];
-    //if (l==r)   return root;
     int mid;
     for (mid=l+1;mid<=r;mid++)
         if (!cmp(save[mid],save[l]))
             break;
-    root->left=buildTree(l+1,mid-1,cmp);  //l+1才可
+    root->left=buildTree(l+1,mid-1,cmp);
     for (int i=mid;i<=r;i++)  {
         if  (save[i]!=save[l]&&cmp(save[i],save[l]))    {
             isBST=false;
@@ -40,7 +39,7 @@ void posttr(Node* root) {
     if (root==NULL) return;
     posttr(root->left);
     posttr(root->right);
-    if (flag==false)    {
+    if (flag==false)    {   //这种设flag打印树的方法很巧妙
         cout<<root->val;
         flag=true;
     }
