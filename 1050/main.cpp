@@ -5,12 +5,10 @@ int main()  {
     string s1,s2;
     getline(cin,s1);
     getline(cin,s2);
-    for (unsigned i=0;i<s2.size();i++)  {
+    for (unsigned i=0;i<s2.size();i++)
         spot[s2[i]]=true;
-    }
-    for (int i=0;i<s1.size();i++)   {
+    for (int i=0;i<s1.size();i++)
         if (!spot[s1[i]])   cout<<s1[i];
-    }
     cout<<endl;
     return 0;
 }
