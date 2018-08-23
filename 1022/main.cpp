@@ -1,3 +1,5 @@
+//用了set，自动排序，比vector一次一排强多了
+//没有切割字符串，而是循环控制的
 #include<iostream>
 #include<string>
 #include<map>
@@ -32,10 +34,10 @@ int main() {
                 break;
             }
         }
-            getline(cin, pub);
-            mpPub[pub].insert(id);
-            getline(cin, year);
-            mpYear[year].insert(id);
+        getline(cin, pub);
+        mpPub[pub].insert(id);
+        getline(cin, year);
+        mpYear[year].insert(id);
         }
         string temp;
         scanf("%d", &m);
