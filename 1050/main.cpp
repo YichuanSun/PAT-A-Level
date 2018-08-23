@@ -1,6 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
+bool spot[400];
+int main()  {
+    string s1,s2;
+    getline(cin,s1);
+    getline(cin,s2);
+    for (unsigned i=0;i<s2.size();i++)  {
+        spot[s2[i]]=true;
+    }
+    for (int i=0;i<s1.size();i++)   {
+        if (!spot[s1[i]])   cout<<s1[i];
+    }
+    cout<<endl;
+    return 0;
+}
 
+
+/*
 int main()  {
     ios::sync_with_stdio(false);
     cin.tie(0);
@@ -18,3 +34,4 @@ int main()  {
     cout<<endl;
     return 0;
 }
+*/
