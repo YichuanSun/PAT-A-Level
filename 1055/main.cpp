@@ -16,6 +16,7 @@ bool cmp(person a,person b)  {
 }
 int main()  {
     ios::sync_with_stdio(false);
+    cin.tie(0);
     int n,k,num,la,ha;
     person tp;
     cin>>n>>k;
