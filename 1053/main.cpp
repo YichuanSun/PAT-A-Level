@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 const int N=105;
 const int MAX_N=1005;
 typedef vector<int> veci;
@@ -11,6 +12,7 @@ struct node{
     veci child;
 }ns[N];
 int cnt=0;
+
 void dfs(int y,int s);
 bool cmp(veci a,veci b)  {
     unsigned i=0;
@@ -19,6 +21,7 @@ bool cmp(veci a,veci b)  {
     }
     return true;
 }
+
 int main()  {
     ios::sync_with_stdio(false);
     cin.tie(0);
