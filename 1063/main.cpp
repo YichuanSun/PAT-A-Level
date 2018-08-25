@@ -5,9 +5,9 @@ set<int> ss[55];
 int main()  {
     ios::sync_with_stdio(false);
     cin.tie(0);
+    cout.setf(ios::fixed);
     int n,nn,t,e1,e2;
     cin>>n;
-    cout.setf(ios::fixed);
     for (int i=1;i<=n;i++)   {
         cin>>nn;
         for (int j=0;j<nn;j++)  {
