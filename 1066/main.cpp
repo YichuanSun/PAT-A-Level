@@ -7,7 +7,6 @@ struct AVLNode  {
     AVLTree left;
     AVLTree right;
 };
-vector<int> v;
 int getHeight(AVLTree a);
 AVLTree lrot(AVLTree a);
 AVLTree rrot(AVLTree a);
@@ -15,22 +14,19 @@ AVLTree lrrot(AVLTree a);
 AVLTree rlrot(AVLTree a);
 AVLTree Insert(AVLTree T,int x);
 int main()  {
-    int n,tmp;
+    int n,t;
     cin>>n;
+    AVLTree root=nullptr;
     for (int i=0;i<n;i++)   {
-        cin>>tmp;
-        v.push_back(tmp);
+        cin>>t;
+        root=Insert(root,t);
     }
-    AVLTree root=NULL;
-    for (unsigned i=0;i<v.size();i++)
-        Insert(root,v[i]);
     cout<<root->data<<endl;
     return 0;
 }
 
 AVLTree Insert(AVLTree T,int x) {
     if (!T) {
-        cout<<"OK"<<endl;
         T=new AVLNode;
         T->data=x;
         T->height=1;
