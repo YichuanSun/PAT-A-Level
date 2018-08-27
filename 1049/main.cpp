@@ -1,19 +1,17 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-int main()  {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    int n,t,cnt=0;
-    cin>>n;
-    for (int i=1;i<=n;i++)  {
-        t=i;
-        if (t%10!=1)
-        while (t!=0)    {
-            if (t%10==1)    cnt++;
-            t/=10;
-        }
+#include<cstdio>
+int main(){
+    int n;
+    scanf("%d",&n);
+    int a = 1,left,now,right,ans = 0;
+    while(n/a){
+        left = n / (a*10);
+        right = n % a;
+        now = n / a % 10;
+        if(now == 0) ans += left*a;
+        else if(now == 1) ans += left*a + right + 1;
+        else ans += (left+1)*a;
+        a *= 10;
     }
-    cout<<cnt<<endl;
+    printf("%d",ans);
     return 0;
 }
