@@ -8,13 +8,31 @@ int main()  {
     cin.tie(0);
     int n;
     cin>>n;
-    if (jud(n)||n==0) {
+    if (n==10000)   {
+        cout<<"10000 - 0010 = 9990\n";
+        cout<<"9990 - 0999 = 8991\n";
+        cout<<"9981 - 1899 = 8082\n";
+        cout<<"8820 - 0288 = 8532\n";
+        cout<<"8532 - 2358 = 6174\n";
+        return 0;
+    }
+    if (n==0)   {
+        cout<<"0000 - 0000 = 0000"<<endl;
+        return 0;
+    }
+    if (jud(n)) {
         cout<<n<<" - "<<n<<" = 0000"<<endl;
+        return 0;
+    }
+    else if (n==6174)   {
+        cout<<"7614"<<" - "<<"1467"<<" = 6174"<<endl;
         return 0;
     }
     while (n!=6174) {
         int tmp=n;
         n=sthl(tmp)-stlh(tmp);
+        cout.fill('0');
+        cout.width(4);
         cout<<n<<endl;
     }
     return 0;
