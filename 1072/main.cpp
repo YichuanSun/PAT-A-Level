@@ -23,7 +23,8 @@ int main()  {
     ios::sync_with_stdio(false);
     cin.tie(0);
     fill(g[0],g[0]+N*N,INF);
-    int t,ta,tb;
+    int t,ta,tb,ansnum;
+    double ansav,ansmin;
     char *a=new char[4],*b=new char[4];
     cin>>n>>m>>k>>ds;
     for (int i=0;i<k;i++)   {
