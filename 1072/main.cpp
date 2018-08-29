@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #define N 1005
-#define INF 1000000
+#define INF 0xfffffff
 using namespace std;
 struct gss{
     int num;
