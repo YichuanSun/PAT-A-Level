@@ -33,10 +33,10 @@ int bfs(int tn)    {
     int cot[7];
     fill(cot,cot+7,0);
     que.push(tn);
+    used[tn]=true;
     cot[0]=1;
     while (!que.empty()&&cnt<l)    {
         int tt=que.front();
-        used[tt]=true;
         que.pop();
         cot[cnt]--;
         for (int i=1;i<=n;i++)  {
