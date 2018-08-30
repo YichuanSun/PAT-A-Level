@@ -1,18 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-int gcd(int a,int b);
+long long gcd(long long a,long long b);
 int main()  {
     int n;
-    int fz=0,fm=1,nu,de;
+    long long fz=0,fm=1,nu,de;
     cin>>n;
     for (int i=0;i<n;i++)   {
-        scanf("%d/%d",&nu,&de);
-        int gys=gcd(fm,de);
-        int gbs=fm*de/gys;
+        scanf("%lld/%lld",&nu,&de);
+        long long gys=gcd(fm,de);
+        long long gbs=fm*de/gys;
         fz=fz*gbs/fm+nu*gbs/de;
         fm=gbs;
+        long long t=gcd(fz,fm);
+        fz=fz/t;
+        fm=fm/t;
     }
-    int itg=fz/fm;
+    long long itg=fz/fm;
     fz=fz-fm*itg;
     if (fz!=0)  {
         for (int i=2;i<=fm&&i<=fz;i++)    {
@@ -21,14 +24,14 @@ int main()  {
                 fz/=i;
             }
         }
-        if (itg!=0) printf("%d %d/%d\n",itg,fz,fm);
-        else    printf("%d/%d\n",fz,fm);
+        if (itg!=0) printf("%lld %lld/%lld\n",itg,fz,fm);
+        else    printf("%lld/%lld\n",fz,fm);
     }
-    else    printf("%d\n",itg);
+    else    printf("%ld\n",itg);
     return 0;
 }
 
-int gcd(int a,int b)    {
+long long gcd(long long a,long long b)    {
     if (a%b==0) return b;
     return gcd(b,a%b);
 }
