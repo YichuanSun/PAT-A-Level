@@ -1,3 +1,6 @@
+/*
+他这个用cot数组控制bfs层数的方法得学习一下啊
+*/
 #include <bits/stdc++.h>
 #define N 1005
 using namespace std;
