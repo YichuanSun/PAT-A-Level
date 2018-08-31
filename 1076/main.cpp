@@ -41,17 +41,17 @@ int bfs(int tn)    {
     while (!que.empty()&&cnt<l)    {
         int tt=que.front();
         que.pop();
-        cot[cnt]--;
+        cot[cnt]--;             //!!
         for (int i=1;i<=n;i++)  {
             if (i==tn)  continue;
             if (used[i])    continue;
             if (!g[tt][i])  continue;
             que.push(i);
             used[i]=true;
-            cot[cnt+1]++;
+            cot[cnt+1]++;       //!!
             ans++;
         }
-        if (cot[cnt]==0)    cnt++;
+        if (cot[cnt]==0)    cnt++;      //!!
     }
     return ans;
 }
