@@ -43,18 +43,17 @@ int main()  {
             else
                 ss[school[i][j]].rk=j+1;
         }
-        int fate=1,flag=1;
+        int fate=1;
         for (int j=0;j<sz;j++)   {
             if (isadmit[school[i][j]]) continue;
-            if (line[i]>0&&flag) {
+            if (line[i]>0) {
                 fate=ss[school[i][j]].rk;
                 isadmit[school[i][j]]=true;
                 line[i]--;
                 cout<<school[i][j]<<' ';
-                flag=0;
             }
             else    {
-                if (j==0)    break;
+                if (line[i]<=0&&j==0)    break;
                 else    {
                     while (j<sz&&fate==ss[school[i][j]].rk){
                         if (isadmit[school[i][j]]) continue;
