@@ -6,6 +6,7 @@ struct stu{
     int grade;
 };
 vector<stu> tv;
+vector<stu> ans;
 bool cmp(stu a,stu b)   {
     return a.grade>b.grade;
 }
@@ -21,18 +22,15 @@ int main()  {
     }
     cin>>small>>big;
     for (vector<stu>::iterator it1=tv.begin();it1<=tv.end();it1++)
-        if ((*it1).grade<small||(*it1).grade>big)
-            tv.erase(it1);
-    sort(tv.begin(),tv.end(),cmp);
-    if (tv.empty()) {
+        if ((*it1).grade>=small&&(*it1).grade<=big)
+            ans.push_back(*it1);
+    sort(ans.begin(),ans.end(),cmp);
+    if (ans.empty()) {
         cout<<"NONE"<<endl;
         return 0;
     }
-    for (unsigned i=0;i<tv.size();i++)  {
-        cout<<tv[i].name<<' '<<tv[i].id<<endl;
+    for (unsigned i=0;i<ans.size();i++)  {
+        cout<<ans[i].name<<' '<<ans[i].id<<endl;
     }
     return 0;
 }
-
-
-
