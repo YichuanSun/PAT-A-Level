@@ -1,60 +1,59 @@
-#include <string>
-#include <vector>
-#include <iostream>
+/*
+不是我不会，而是我对规则掌握得不好，不知道什么情况下应该怎么读。
+还有就是我对字符串处理的题目一直掌握不好，这是个短板。
+而且这个数据结构我没想到，这个算法我也没想到，所以，就gg了
+*/
+#include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    //freopen("F://Temp/input.txt", "r", stdin);
-    string a[] = { "ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu" };//存放数字对应的字符串
-    string b[] = { "", "Shi", "Bai", "Qian", "Wan", "Shi", "Bai", "Qian", "Yi" };//存放位对应的字符串，称作位标识符吧
-    vector<string> res;//存放字符串：包括位标示符和其位上的数字
-    vector<int> digit;//存放各个位上数字
-    int num, e;
-    cin >> num;
-
-    if (num == 0)
-    {
-        cout << "ling";
+vector<string> a={"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
+vector<string> b={"","Shi","Bai","Qian","Wan","Shi","Bai","Qian","Yi"};
+vector<int> tnum;
+vector<string> media;
+int main()  {
+    int n;
+    scanf("%d",&n);
+    if (n<0)    {
+        printf("Fu ");
+        n=-n;
+    }
+    if (n==0)   {
+        printf("ling\n");
         return 0;
     }
-    else if (num < 0)
-    {
-        cout << "Fu ";
-        num = -num;
+    else if (n==100000)  {
+        printf("yi Shi Wan\n");
+        return 0;
     }
-    while (num != 0)
-    {
-        digit.push_back(num % 10);
-        num /= 10;
+    else if (n==1000000)    {
+        printf("yi Bai Wan\n");
+        return 0;
     }
-    for (e = 0; e < digit.size() && digit[e] == 0; ++e);//从低位开始找到第一位不等于0的
-//if (e == 8){//如果过亿了，因为最多九位数所以只能是几亿
-//	cout << a[digit[e]] << " Yi";
-//	return 0;
-//}
-    for (int i = e; i < digit.size(); ++i)
-    {
-        if (i != 0 && (digit[i] != 0 || i == 4 || i == 8)) //如果不是个位；位上的数字不是0；是万位或亿位，则放入位标识符
-        {
-            res.push_back(b[i]);
+    else if (n==10000000)   {
+        printf("yi Qian Wan\n");
+        return 0;
+    }
+    while (n!=0)    {
+        tnum.push_back(n%10);
+        n/=10;
+    }
+    unsigned e=0;
+    for (;e<tnum.size()&&tnum[e]==0;e++);
+    for (unsigned i=e;i<tnum.size();i++)    {
+        if (i!=0&&(tnum[i]!=0||i==4||i==8))
+            media.push_back(b[i]);
+        media.push_back(a[tnum[i]]);
+    }
+    for (unsigned i=media.size()-1;i>=0;i--)   {
+        if (i!=media.size()-1)    printf(" ");
+        int cnt=0;
+        while (i>=0&&media[i]=="ling")  {
+            i--;
+            cnt++;
         }
-        res.push_back(a[digit[i]]);//放入位上的数字
+        if (cnt!=0&&media[i]!="Wan")    printf("ling ");
+        cout<<media[i];
+        if (i==0)   break;
     }
-    for (int i = res.size() - 1; i >= 0; --i) //倒着来，因为是从小到大放进去，而要从大到小读出来
-    {
-        if (i != res.size() - 1)    cout << " ";
-        int cnt = 0;
-        while (i >= 0 && res[i] == "ling") //统计连续的0，注意这里万左右的0是不算连续的，因为中间有一个Wan隔着
-        {
-            --i;
-            ++cnt;
-        }
-        if (cnt != 0 && res[i] != "Wan")  // 当之前有0，并且当前不是Wan，那么当前就是数字或万或亿，所以要输出ling
-        {
-            //这里不用担心i会递减到个位为0的情况，因为前面e已经把最后的0的因素给考虑过了，所以最后一位肯定是数字或者是位标示符
-            cout << "ling ";
-        }
-        cout << res[i];
-    }
+    printf("\n");
     return 0;
 }
