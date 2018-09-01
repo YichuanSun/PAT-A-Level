@@ -28,28 +28,10 @@ int main()  {
     cout<<c<<endl;
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+下面这段复杂度o(n)的算法实现，不知道为什么，
+一个case一直过不了
+*/
 //#include <bits/stdc++.h>
 //using namespace std;
 //map<char,bool> spot;
