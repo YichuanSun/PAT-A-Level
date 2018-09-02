@@ -5,6 +5,7 @@ struct number{
     int nu,de;
 };
 number a,b;
+
 void add(number a,number b);
 void dif(number a,number b);
 void pro(number a,number b);
