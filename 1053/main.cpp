@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N=105;
-const int MAX_N=1005;
+const int N=105,MAX_N=1005;
 typedef vector<int> veci;
 veci path[MAX_N];
 struct node{
