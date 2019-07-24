@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <bits/stdc++.h>                   //第三次修改，将所有的cout改成了printf。
+using namespace std;                       //事实证明即便用了ios优化代码，cout也比printf慢得多
 struct node{
     string nb;
     int s;
@@ -8,8 +8,6 @@ bool cmp(const node& a,const node& b)   {
     return (a.s==b.s)?(a.nb<b.nb):(a.s>b.s);
 }
 int main()  {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
     int n,m,op;
     string ts;
     cin>>n>>m;
@@ -20,25 +18,23 @@ int main()  {
         vector<node> ans;
         int tts=0,cnt=0;
         cin>>op>>ts;
+        printf("Case %d: %d %s\n",i+1,op,ts.c_str());
         if (op==1)  {
-            cout<<"Case "<<i+1<<": "<<op<<' '<<ts<<endl;
             for (int j=0;j<n;j++)   {
                 if (vn[j].nb[0]==ts[0])
                     ans.push_back(vn[j]);
             }
         }
         else if (op==2) {
-            cout<<"Case "<<i+1<<": "<<op<<' '<<ts<<endl;
             for (int j=0;j<n;j++)   {
                 if (vn[j].nb.substr(1,3)==ts)   {
                     cnt++;
                     tts+=vn[j].s;
                 }
             }
-            if (cnt)    cout<<cnt<<' '<<tts<<endl;
+            if (cnt) printf("%d %d\n",cnt,tts);
         }
         else if (op==3) {
-            cout<<"Case "<<i+1<<": "<<op<<' '<<ts<<endl;
             unordered_map<string,int> ui;
             for (int j=0;j<n;j++)   {
                 if (vn[j].nb.substr(4,6)==ts)
@@ -47,50 +43,66 @@ int main()  {
             for (auto it:ui)    ans.push_back({it.first,it.second});
         }
         sort(ans.begin(),ans.end(),cmp);
-        for (auto it:ans)   cout<<it.nb<<' '<<it.s<<endl;
-        if (((op==1||op==3)&&ans.empty())||(op==2&&cnt==0)) cout<<"NA"<<endl;
+        for (auto it:ans) printf("%s %d\n",it.nb.c_str(),it.s);
+        if (((op==1||op==3)&&ans.empty())||(op==2&&cnt==0)) printf("NA\n");
     }
     return 0;
 }
 
+//#include <bits/stdc++.h>        //这部分是第一次仿照柳婼的，22分，超时1处
+//using namespace std;
+//struct node{
+//    string nb;
+//    int s;
+//};
+//bool cmp(const node& a,const node& b)   {
+//    return (a.s==b.s)?(a.nb<b.nb):(a.s>b.s);
+//}
+//int main()  {
+//    ios::sync_with_stdio(false);
+//    cin.tie(0);
+//    int n,m,op;
+//    string ts;
+//    cin>>n>>m;
+//    vector<node> vn(n);
+//    for (int i=0;i<n;i++)
+//        cin>>vn[i].nb>>vn[i].s;
+//    for (int i=0;i<m;i++)   {
+//        vector<node> ans;
+//        int tts=0,cnt=0;
+//        cin>>op>>ts;
+//        cout<<"Case "<<i+1<<": "<<op<<' '<<ts<<endl;
+//        if (op==1)  {
+//            for (int j=0;j<n;j++)   {
+//                if (vn[j].nb[0]==ts[0])
+//                    ans.push_back(vn[j]);
+//            }
+//        }
+//        else if (op==2) {
+//            for (int j=0;j<n;j++)   {
+//                if (vn[j].nb.substr(1,3)==ts)   {
+//                    cnt++;
+//                    tts+=vn[j].s;
+//                }
+//            }
+//            if (cnt)    cout<<cnt<<' '<<tts<<endl;
+//        }
+//        else if (op==3) {
+//            unordered_map<string,int> ui;
+//            for (int j=0;j<n;j++)   {
+//                if (vn[j].nb.substr(4,6)==ts)
+//                    ui[vn[j].nb.substr(1,3)]++;
+//            }
+//            for (auto it:ui)    ans.push_back({it.first,it.second});
+//        }
+//        sort(ans.begin(),ans.end(),cmp);
+//        for (auto it:ans)   cout<<it.nb<<' '<<it.s<<endl;
+//        if (((op==1||op==3)&&ans.empty())||(op==2&&cnt==0)) cout<<"NA"<<endl;
+//    }
+//    return 0;
+//}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//#include <bits/stdc++.h>
+//#include <bits/stdc++.h>          //这部分是我自己写的垃圾代码
 //#define N 1005
 //using namespace std;
 //
