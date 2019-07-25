@@ -14,7 +14,7 @@ int main()  {
     }
     cin>>k;
     for (int i=0;i<k;i++)   {
-        for (int j=0;j<n;j++)   scanf("%d",&co[j]); //
+        for (int j=0;j<n;j++)   scanf("%d",&co[j]); //此处最初j误写了i,找了好久才发现
         int cnt=-1;
         set<int> si;
         for (int p=0;p<n;p++)   {   //对所有邻接表
