@@ -13,19 +13,19 @@ int main()  {
     }
     cin>>k;
     for (int i=0;i<k;i++)   {
-        for (int j=0;j<n;j++)   cin>>co[i];
-        int ans=0;
+        for (int j=0;j<n;j++)   cin>>co[j]; //
+        int cnt=-1;
+        set<int> si;
         for (int p=0;p<n;p++)   {   //对所有邻接表
-            set<int> si;
             si.insert(co[p]);
-            for (int m=0;m<(int)v[p].size();m++)    {
-                if (co[v[p][m]]==co[p]) {ans=0;break;}
-                si.insert(co[v[p][m]]);
+            for (int y=0;y<(int)v[p].size();y++)    {
+                if (co[v[p][y]]==co[p]) {cnt=0;break;}
+                si.insert(co[v[p][y]]);
             }
-            ans=max(ans,(int)si.size());
+            if (cnt==0) break;
         }
-        if (ans==0) printf("No\n");
-        else printf("%d-coloring\n",ans);
+        if (cnt==0) printf("No\n");
+        else    printf("%d-coloring\n",(int)si.size());
     }
     return 0;
 }
