@@ -7,13 +7,14 @@ int main()  {
     int n,m,k,a,b;
     cin>>n>>m;
     for (int i=0;i<m;i++)   {
-        cin>>a>>b;
+        //cin>>a>>b;
+        scanf("%d%d",&a,&b);
         v[a].push_back(b);
         v[b].push_back(a);
     }
     cin>>k;
     for (int i=0;i<k;i++)   {
-        for (int j=0;j<n;j++)   cin>>co[j]; //
+        for (int j=0;j<n;j++)   scanf("%d",&co[j]); //
         int cnt=-1;
         set<int> si;
         for (int p=0;p<n;p++)   {   //对所有邻接表
