@@ -36,30 +36,30 @@ int main()  {
             if (na) break;
         }
         if (!na)    {
-
             printf("%d ",sum);
             int neg=0,p2=0,pn=0;
-            set<int> si;
             for (int i=1;i<=n;i++)   {
-                if (spot[i]>0)  si.insert(i);
                 if (spot[i]==0)  neg=1;
                 if (spot[i]>2) pn++;
                 if (spot[i]==2) p2++;
             }
-            if (is_cycle&&neg==0&&pn==0&&p2==1&&spot[ta[0]]==2&&(int)si.size()==n)  {
+            //成环&所有点全过&没有经过大于2次的点&仅有一个经过2次的点&首点经过2次
+            if (is_cycle&&neg==0&&pn==0&&p2==1&&spot[ta[0]]==2)  {
                 if (sum<ans)    {
                     ans=sum;
                     ansi=z;
                 }
                 printf("(TS simple cycle)\n");
             }
-            else if (is_cycle&&neg==0&&(pn>0||p2>1)&&(int)si.size()==n) {
+            //成环&所有点全过&（有经过大于n次的点或有不止一个经过大于2次的点）
+            else if (is_cycle&&neg==0&&(pn>0||p2>1)) {
                 if (sum<ans)    {
                     ans=sum;
                     ansi=z;
                 }
                 printf("(TS cycle)\n");
             }
+            //否则
             else
                 printf("(Not a TS cycle)\n");
         }
