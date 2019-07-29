@@ -38,8 +38,3 @@ int main()  {
     printf("%.1f\n",1.0*ans/m);
     return 0;
 }
-
-
-
-
-
