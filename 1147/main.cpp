@@ -3,7 +3,7 @@
 using namespace std;
 void dfs(int a[],int be);
 void postorder(int a[],int b);
-int a[N],n,m;
+int a[N],n,m,cnt=0;
 bool mxh=1,mnh=1;
 int main()  {
     scanf("%d%d",&m,&n);
@@ -16,22 +16,19 @@ int main()  {
         }
         else if (mnh)   printf("Min Heap\n");
         else printf("Not Heap\n");
-        printf("%d %d\n",mxh,mnh);
         postorder(a,1);
-        printf("\n");
         mxh=mnh=true;
+        cnt=0;
     }
     return 0;
 }
 
 void postorder(int a[],int b)    {
-    if (2*b>n&&2*b+1>n) {
-        if (b<=n)   printf("%d ",a[b]);
-        return;
-    }
+    if (b>n)    return;
     postorder(a,2*b);
     postorder(a,2*b+1);
-    printf("%d ",a[b]);
+    printf("%d%c",a[b],cnt==n-1?'\n':' ');
+    cnt++;
 }
 
 void dfs(int a[],int be)    {
