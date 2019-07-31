@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define N 1005
 using namespace std;
-void dfs(int a[],int be);
+//void dfs(int a[],int be);
 void postorder(int a[],int b);
 int a[N],n,m,cnt=0;
 bool mxh=1,mnh=1;
@@ -9,7 +9,11 @@ int main()  {
     scanf("%d%d",&m,&n);
     for (int i=0;i<m;i++)   {
         for (int i=1;i<=n;i++)   scanf("%d",a+i);
-        dfs(a,1);
+        //dfs(a,1);
+        for (int i=2;i<=n;i++)    {     //从2开始，检测i/2，而不是i*2，这样不需要处理下标越界，简单了很多
+            if (a[i/2]>a[i])    mnh=0;
+            if (a[i/2]<a[i])    mxh=0;
+        }
         if (mxh)    {
             if (!mnh)   printf("Max Heap\n");
             else printf("Not Heap\n");
@@ -31,16 +35,16 @@ void postorder(int a[],int b)    {
     cnt++;
 }
 
-void dfs(int a[],int be)    {
-    if (be>n)   return;
-    if (2*be<=n)   {
-        if (a[2*be]>a[be])  mxh=0;
-        else if (a[2*be]<a[be]) mnh=0;
-        dfs(a,2*be);
-    }
-    if (2*be+1<=n)  {
-        if (a[2*be+1]>a[be])    mxh=0;
-        else if (a[2*be+1]<a[be])  mnh=0;
-        dfs(a,2*be+1);
-    }
-}
+//void dfs(int a[],int be)    {
+//    if (be>n)   return;
+//    if (2*be<=n)   {
+//        if (a[2*be]>a[be])  mxh=0;
+//        else if (a[2*be]<a[be]) mnh=0;
+//        dfs(a,2*be);
+//    }
+//    if (2*be+1<=n)  {
+//        if (a[2*be+1]>a[be])    mxh=0;
+//        else if (a[2*be+1]<a[be])  mnh=0;
+//        dfs(a,2*be+1);
+//    }
+//}
