@@ -9,12 +9,8 @@ struct Node{
     Node* right;
     int val;
 };
-bool cmpltoh(int a,int b)  {
-    return a<=b;
-}
-bool cmphtol(int a,int b)   {
-    return a>=b;
-}
+bool cmpltoh(int a,int b)  {return a<=b;}
+bool cmphtol(int a,int b)   {return a>=b;}
 Node* buildTree(int l,int r,bool cmp(int,int))    {
     if (!isBST) return NULL;
     if (l>r)   return NULL;
