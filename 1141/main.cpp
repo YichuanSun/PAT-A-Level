@@ -15,8 +15,15 @@ map<string,pair<int,double> > school;
 map<string,vector<man> > msm;
 vector<total> vts;
 void change(string& ts);
+bool cmp(total a,total b)   {
+    if (a.score==b.score)   {
+        if (a.number==b.number) return a.un<b.un;
+        else    return a.number<b.number;
+    }
+    else return a.score>b.score;
+}
 int main()  {
-    int n;
+    int n,ran=1;
     cin>>n;
     for (int i=0;i<n;i++)   {
         man tm;
@@ -48,7 +55,10 @@ int main()  {
         string nwschool=(*it1).first;
         vts.push_back(total(nwschool,school[nwschool].second,school[nwschool].first));
     }
-    for (int i=0;i<(int)vts.size();i++)
-        cout<<vts[i].number<<' '<<vts[i].un<<' '<<vts[i].score<<endl;
+    sort(vts.begin(),vts.end(),cmp);
+    for (int i=0;i<(int)vts.size();i++) {
+        if (i!=0&&vts[i].score!=vts[i-1].score)   ran=i+1;
+        cout<<ran<<' '<<vts[i].un<<' '<<vts[i].score<<' '<<vts[i].number<<endl;
+    }
     return 0;
 }
