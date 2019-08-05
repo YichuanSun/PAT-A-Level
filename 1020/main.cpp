@@ -1,3 +1,4 @@
+//这道题先放着里，我想用顺序树来做，但是没做出来
 #include <bits/stdc++.h>
 #define N 100
 using namespace std;
@@ -18,7 +19,8 @@ void buildTree(int post[],int in[],int pl,int ph,int il,int ih)  {
     cout<<pl<<' '<<ph<<' '<<il<<' '<<ih<<endl;
     if (pl>ph)  return;
     if (cnt>=n) return;
-    tree[cnt++]=post[ph];
+    if (tree[++cnt]!=0) return;
+    tree[cnt]=post[ph];
     printf("ori cnt=%d \t now root = %d\n",cnt-1,post[ph]);
     int i=pl;
     while (in[i]!=post[ph]) i++;
