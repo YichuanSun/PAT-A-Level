@@ -6,13 +6,9 @@ int Rank[MAX_N];    //the hight of tree i
 void init_union_find(int n)  {       //initial find_union set
     for (int i=0;i<n;i++)   {par[i]=i;Rank[i]=0;}
 }
-int find_union_find(int x)   {      //return the belonging node of x
-    while (par[x]!=x)   {
-        par[x]=par[par[x]];     //maybe can make the path compression
-        printf("%d ",par[x]);
-    }
-    cout<<endl;
-    return par[x];
+int find_union_find(int x)   {
+    if (par[x]==x)  return x;
+    else return par[x]=fid(par[x]);
 }
 void unite_union_find(int x,int y)  {
     x=find_union_find(x);
