@@ -1,7 +1,7 @@
+//上部分为2019年暑假刷题
 #include <bits/stdc++.h>
 #define N 1005
 using namespace std;
-
 typedef struct bt{
     int data;
     bt *lc,*rc;
