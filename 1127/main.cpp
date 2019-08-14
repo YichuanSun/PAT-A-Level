@@ -36,19 +36,11 @@ void zigzagTraversal(bt* root)  {
         }
     }
 }
-void pr(bt* root)   {
-    if (root==nullptr)  return;
-    printf("%d ",root->data);
-    pr(root->lc);
-    pr(root->rc);
-}
 int main()  {
     scanf("%d",&n);
     for (int i=0;i<n;i++)   scanf("%d",&in[i]);
     for (int i=0;i<n;i++)   scanf("%d",&post[i]);
     bt* root=postInbuildTree(post,in,n);
-    //pr(root);
     zigzagTraversal(root);
     return 0;
 }
-
