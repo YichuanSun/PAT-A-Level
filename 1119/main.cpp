@@ -1,58 +1,4 @@
-#include <iostream>
-using namespace std;
-const int maxn = 31;
-
-int n, index = 0;
-int pre[maxn], post[maxn];
-bool flag = true;
-
-struct Node {
-	int data;
-	Node *lchild, *rchild;
-} *root;
-
-Node *create(int preL, int preR, int postL, int postR){
-	if (preL > preR) return NULL;//不合理就返回NULL
-	Node *node = new Node;//建立根结点
-	node->data = pre[preL];
-	node->lchild = NULL;
-	node->rchild = NULL;
-	if (preL == preR)
-		return node;//若只有一个节点那么直接返回即可
-	int k = 0;
-	for (k = preL + 1; k <= preR; k++)
-		if (pre[k] == post[postR - 1]) break;//从前序中找后序中子树根的位置
-	if (k - preL > 1){
-		node->lchild = create(preL + 1, k - 1, postL, postL + k - preL - 2);
-		node->rchild = create(k, preR, postL + k - preL - 1, postR - 1);
-	}
-	else{
-		flag = false;
-		node->rchild = create(k, preR, postL + k - preL - 1, postR - 1);
-	}
-	return node;
-}
-
-void inOrder(Node *node){
-	if (node == NULL) return;
-	inOrder(node->lchild);
-	if (index < n - 1)
-		cout << node->data << " ";
-	else cout << node->data << endl;
-	index++;
-	inOrder(node->rchild);
-}
-
-int main(){
-	cin >> n;
-	for (int i = 0; i < n; ++i) cin >> pre[i];
-	for (int i = 0; i < n; ++i) cin >> post[i];
-	root = create(0, n - 1, 0, n - 1);
-	if (flag) cout << "Yes\n";
-	else cout << "No\n";
-	inOrder(root);
-	return 0;
-}
+//下面的注释是作者写的
 /*
 这题我开始做有点难以理解，后来想清楚了：我解释下
 【1】 2 3 4 6 7 5
@@ -76,35 +22,45 @@ int main(){
  树，但是左还是右？自己决定，这种情况就是不能唯一确定
 */
 
-//下面是我写的垃圾
-//#include <bits/stdc++.h>
-//#define N 105
-//using namespace std;
-//typedef struct bt{
-//    int data;
-//    bt *lc,*rc;
-//}bt;
-//int pre[N],post[N],n;
-//bt* prePostBuildTree(int pre[],int post[],int n)  {
-//    if (n<=0)   return nullptr;
-//    int i=0;
-//    while (pre[i]!=post[n-1])   i++;
-//    bt *nw=new bt;
-//    nw->data=post[n-1];
-//    if (i==0)   {
-//        nw->lc=prePostBuildTree(pre+1,post,i+1);
-//        nw->rc=prePostBuildTree(pre+i+1,post+i+1,n-i-1);
-//    }
-//    else {
-//        nw->lc=prePostBuildTree(pre+1,post,i+1);
-//
-//    }
-//    return nw;
-//}
-//int main()  {
-//    cin>>n;
-//    for (int i=0;i<n;i++)   scanf("%d",&pre[i]);
-//    for (int i=0;i<n;i++)   scanf("%d",&post[i]);
-//    buildTree();
-//    return 0;
-//}
+//下面是我仿照大佬写的垃圾
+#include <bits/stdc++.h>
+#define N 105
+using namespace std;
+typedef struct bt{
+    int data;
+    bt *lc,*rc;
+}bt;
+int pre[N],post[N],n,flag=1,cnt;
+bt* prePostBuildTree(int prel,int prer,int postl,int postr)  {
+    if (prel>prer)  return nullptr;     //第二次加的
+    bt* nw=new bt;
+    nw->data=pre[prel];
+    nw->lc=nullptr;nw->rc=nullptr;
+    if (prel==prer) return nw;          //第二次加的
+    int i=prel+1;
+    while (i<=prer&&pre[i]!=post[postr-1])  i++;
+    if (i>prel+1)   {
+        nw->lc=prePostBuildTree(prel+1,i-1,postl,postl+i-prel-2);
+        nw->rc=prePostBuildTree(i,prer,postl+i-prel-1,postr-1);
+    }
+    else{
+        flag=0;
+        nw->rc=prePostBuildTree(i,prer,postl+i-prel-1,postr-1);
+    }
+    return nw;
+}
+void inOrderTraversal(bt* root) {
+    if (root==nullptr)  return;
+    inOrderTraversal(root->lc);
+    printf("%d%c",root->data,(cnt++)==n-1?'\n':' ');
+    inOrderTraversal(root->rc);
+}
+int main()  {
+    cin>>n;
+    for (int i=0;i<n;i++)   scanf("%d",&pre[i]);
+    for (int i=0;i<n;i++)   scanf("%d",&post[i]);
+    bt* root=prePostBuildTree(0,n-1,0,n-1);
+    printf("%s\n",flag?"Yes":"No");
+    inOrderTraversal(root);
+    return 0;
+}
