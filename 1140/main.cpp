@@ -1,64 +1,62 @@
-//#include <bits/stdc++.h>
-//using namespace std;
-//string char_count(string str){
-//    string res;
-//    int cnt = 1;
-//    char c=str[0];
-//    for(int i=1; i<(int)str.length(); i++){
-//        if(c == str[i]){cnt++;}
-//        else{
-//            res = res + c;
-////            string ts="";
-////            while (cnt>0)   {
-////                ts+=char(cnt%10+'0');
-////                cnt/=10;
-////            }
-////            reverse(ts.begin(),ts.end());
-//            res = res + to_string(cnt);
-//            cnt = 1;
-//            c = str[i];
-//        }
-//    }
-//    res = res + c;
-//    res = res + char(cnt + '0');
-//    return res;
-//}
-//
-//int main()  {
-//    int n;
-//    string res;
-//    //cin>>res>>n;
+#include <bits/stdc++.h>
+using namespace std;
+string char_count(string str){
+    string res;
+    int cnt = 1;
+    char c=str[0];
+    for(int i=1; i<(int)str.length(); i++){
+        if(c == str[i]){cnt++;}
+        else{
+            res = res + c;
+//            string ts="";
+//            while (cnt>0)   {
+//                ts+=char(cnt%10+'0');
+//                cnt/=10;
+//            }
+//            reverse(ts.begin(),ts.end());
+            res = res + to_string(cnt);
+            cnt = 1;
+            c = str[i];
+        }
+    }
+    res = res + c;
+    res = res + char(cnt + '0');
+    return res;
+}
+
+int main()  {
+    int n;
+    string res;
+    //cin>>res>>n;
 //    res="6";
 //    n=40;
-//    for (int i=0;i<n;i++)
-//        res = (i==0?res:char_count(res));
-//    cout << res << endl;
-//    return 0;
-//}
-
-//柳婼做法
-#include <iostream>
-using namespace std;
-int main()
-{
-    string s;
-    int n, j;
-    //cin >> s >> n;
-    s="8";
-    n=40;
-    for (int cnt = 1; cnt < n; cnt++)
-    {
-        string t;
-        for (int i = 0; i < s.length(); i = j)
-        {
-            for (j = i; j < s.length() && s[j] == s[i]; j++);
-            t += s[i] + to_string(j - i);
-        }
-        s = t;
-    }
-    cout << s;
+    for (int i=0;i<n;i++)
+        res = (i==0?res:char_count(res));
+    cout << res << endl;
     return 0;
 }
+
+////柳婼做法
+//#include <iostream>
+//using namespace std;
+//int main()
+//{
+//    string s;
+//    int n, j;
+//    cin >> s >> n;
+//    for (int cnt = 1; cnt < n; cnt++)
+//    {
+//        string t;
+//        for (int i = 0; i < s.length(); i = j)
+//        {
+//            for (j = i; j < s.length() && s[j] == s[i]; j++);
+//            t += s[i] + to_string(j - i);
+//        }
+//        s = t;
+//    }
+//    cout << s;
+//    return 0;
+//}
 
 //#include <bits/stdc++.h>
 //using namespace std;
