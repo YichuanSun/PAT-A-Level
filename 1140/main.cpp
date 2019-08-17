@@ -1,37 +1,61 @@
+//#include <bits/stdc++.h>
+//using namespace std;
+//string op(string ts);
+//int main()  {
+//    int n;
+//    string s;
+//    cin>>s>>n;
+//    for (int i=0;i<n-1;i++)   s=op(s);
+//    cout<<s<<endl;
+//    return 0;
+//}
+//
+//string op(string ts)    {
+//    string res="";
+//    if (ts.size()==1)   {res+=ts;res+="1";return res;}
+//    char c=ts[0];
+//    int cnt=1;
+//    for (int i=1;i<(int)ts.size();i++)  {
+//        if (ts[i]==c)   cnt++;
+//        else {
+//            res+=c;
+//            res+=to_string(cnt);
+//            cnt=1;
+//            c=ts[i];
+//        }
+//    }
+//    res+=c;
+//    res+=to_string(cnt);
+//    return res;
+//}
+
 #include <bits/stdc++.h>
 using namespace std;
 string char_count(string str){
-    string res;
+    string res="";
+    if (str.size()==1)   {res+=str;res+="1";return res;}
     int cnt = 1;
     char c=str[0];
     for(int i=1; i<(int)str.length(); i++){
         if(c == str[i]){cnt++;}
         else{
-            res = res + c;
-//            string ts="";
-//            while (cnt>0)   {
-//                ts+=char(cnt%10+'0');
-//                cnt/=10;
-//            }
-//            reverse(ts.begin(),ts.end());
-            res = res + to_string(cnt);
+            res +=c;
+            res +=to_string(cnt);
             cnt = 1;
             c = str[i];
         }
     }
-    res = res + c;
-    res = res + char(cnt + '0');
+    res +=c;        //把所有的res=res+c这种全部变成了自增，就不超时了
+    res +=to_string(cnt);
     return res;
 }
 
 int main()  {
     int n;
     string res;
-    //cin>>res>>n;
-//    res="6";
-//    n=40;
-    for (int i=0;i<n;i++)
-        res = (i==0?res:char_count(res));
+    cin>>res>>n;
+    for (int i=0;i<n-1;i++)
+        res = char_count(res);
     cout << res << endl;
     return 0;
 }
