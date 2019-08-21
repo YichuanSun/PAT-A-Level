@@ -1,3 +1,39 @@
+#include <bits.stdc++.h>
+using namespace std;
+
+int main()  {
+    int n,m,a,b;
+    cin>>n>>m;
+    for (int i=0;i<m;i++)   {
+        cin>>a>>b;
+
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//我写的辣鸡，就对了一个样例
 #include <bits/stdc++.h>
 #define N 10005
 using namespace std;
