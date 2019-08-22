@@ -15,9 +15,9 @@ int main()  {
     string a;
     int p,m,n,sc;
     cin>>p>>m>>n;
-    for (int i=0;i<p;i++)   {cin>>a>>sc;gp[a]=sc;ss.insert(a);}
-    for (int i=0;i<m;i++)   {cin>>a>>sc;gm[a]=sc;ss.insert(a);}
-    for (int i=0;i<n;i++)   {cin>>a>>sc;gf[a]=sc;ss.insert(a);}
+    for (int i=0;i<p;i++)   {cin>>a>>sc;gp[a]=(sc<=900)?sc:0;ss.insert(a);}
+    for (int i=0;i<m;i++)   {cin>>a>>sc;gm[a]=(sc<=100)?sc:0;ss.insert(a);}
+    for (int i=0;i<n;i++)   {cin>>a>>sc;gf[a]=(sc<=100)?sc:0;ss.insert(a);}
     unordered_set<string>::iterator it=ss.begin();
     for (;it!=ss.end();it++)    {
         stinfo ns;
