@@ -1,3 +1,5 @@
+//如果你注定成为一个很厉害的人
+//那么问题的答案就藏在你的血脉中
 #include <bits/stdc++.h>
 using namespace std;
 unordered_map<string,int> gp,gm,gf,g;
@@ -27,7 +29,7 @@ int main()  {
         ns.f=(gf[*it]==0?-1:gf[*it]);
         if (ns.p<200)   ns.t=0;
         else    {
-            if (ns.m>ns.f)  ns.t=round(0.4*gm[*it]+0.6*gf[*it]);
+            if (ns.m>ns.f)  ns.t=0.4*gm[*it]+0.6*gf[*it]+0.5;
             else    ns.t=ns.f;
         }
         vs.push_back(ns);
@@ -35,7 +37,7 @@ int main()  {
     sort(vs.begin(),vs.end(),cmp);
     //cout<<vs.size()<<endl;
     for (int i=0;i<(int)vs.size();i++)
-        if (vs[i].t>=60&&vs[i].t<=100)
+        if (vs[i].t>=60&&vs[i].t<=100&&vs[i].p>=200)
         cout<<vs[i].name<<' '<<vs[i].p<<' '<<vs[i].m<<' '<<vs[i].f<<' '<<vs[i].t<<endl;
     return 0;
 }
