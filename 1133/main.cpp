@@ -1,7 +1,6 @@
 #include <iostream>
 #define N 100005
 using namespace std;
-
 class node{
     public:
         int data,next;
@@ -18,36 +17,36 @@ int main(){
         cin>>ad>>d>>nx;
         tot[ad]=node(d,nx);
     }
-    cout<<endl;
     for (;pr!=-1;pr=tot[pr].next)  {
         int ad=pr,d=tot[pr].data,nx=tot[pr].next;
-        cout<<ad<<' '<<d<<' '<<nx<<endl;
         if (d<0)    {
             ne[ad]=node(d,nx);
-            cout<<'\t'<<nw<<endl;
             if (neb==-1)    {nw=neb=ad;}
             else {ne[nw].next=ad;nw=ad;}
         }
         else if (d>=0&&d<=k)    {
             co[ad]=node(d,nx);
-            cout<<'\t'<<cw<<endl;
             if (cob==-1)    cw=cob=ad;
             else {co[cw].next=ad;cw=ad;}
         }
         else{
             ord[ad]=node(d,nx);
-            cout<<ad<<'\t'<<ow<<endl;
             if (ordb==-1)   ow=ordb=ad;
             else {ord[ow].next=ad;ow=ad;}
         }
     }
     ne[nw].next=cob;
     co[cw].next=ordb;
-//    for (int ptr=neb;ptr!=cob;ptr=ne[ptr].next)
-//        cout<<ptr<<' '<<ne[ptr].data<<' '<<ne[ptr].next<<endl;
-//    for (int ptr=cob;ptr!=ordb;ptr=co[ptr].next)
-//        cout<<ptr<<' '<<co[ptr].data<<' '<<co[ptr].next<<endl;
-//    for (int ptr=ordb;ptr!=-1;ptr=ord[ptr].next)
-//        cout<<ptr<<' '<<ord[ptr].data<<' '<<ord[ptr].next<<endl;
+    ord[ow].next=-1;
+    for (int ptr=neb;ptr!=cob;ptr=ne[ptr].next)
+        printf("%05d %d %05d\n",ptr,ne[ptr].data,ne[ptr].next);
+    for (int ptr=cob;ptr!=ordb;ptr=co[ptr].next)
+        printf("%05d %d %05d\n",ptr,co[ptr].data,co[ptr].next);
+    for (int ptr=ordb;ptr!=-1;ptr=ord[ptr].next)    {
+        if (ord[ptr].next!=-1)
+            printf("%05d %d %05d\n",ptr,ord[ptr].data,ord[ptr].next);
+        else
+            printf("%05d %d %d\n",ptr,ord[ptr].data,ord[ptr].next);
+    }
     return 0;
 }
