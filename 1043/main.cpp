@@ -5,8 +5,7 @@ struct bt{
     int data;
     bt *lc,*rc;
 };
-int a[N];
-bt* buildTree(int a[],int n,bool cmp(int,int));
+int a[N],b[N];
 bool cmpltoh(int a,int b)   {return a<=b;}
 bool cmphtol(int a,int b)   {return a>=b;}
 void pret(bt* root)    {
@@ -14,39 +13,25 @@ void pret(bt* root)    {
     pret(root->lc);
     pret(root->rc);
 }
+bt* preInBuildTree(int pre[],int in[],int n);
 int main()  {
     int n;
     cin>>n;
-    for (int i=0;i<n;i++)   cin>>a[i];
-    bt* root1=buildTree(a,n,cmpltoh);
-    pret(root1);
-    bt* root2=buildTree(a,n,cmphtol);
+    for (int i=0;i<n;i++)   {cin>>a[i];b[i]=a[i];}
+    sort(b,b+n);
+    preInBuildTree(a,b,n);
     return 0;
 }
-
-bt*buildTree(int a[],int n,bool cmp(int,int))    {
-    if (n<=0)    return nullptr;
-    if (n==1)   {
-        bt* nw=new bt;
-        nw->data=a[0];
-        nw->rc=nw->rc=nullptr;
-        return nw;
-    }
+bt* preInBuildTree(int pre[],int in[],int n)   {
+    if (n<=0)   return nullptr;
     int i=0;
-    while (cmp(a[i],a[0]))  {
-        i++;    //i-1是子树节点数
-        //cout<<a[i]<<endl;
-    }
-    //cout<<"OK"<<endl;
-    bt* nw= new bt;
-    nw->data=a[0];
-    if (i-1>0)
-        nw->lc=buildTree(a+1,i-1,cmp);
-    if (n-i>0)
-        nw->rc=buildTree(a+i,n-i,cmp);
+    while (pre[0]!=in[i])   i++;
+    bt* nw=new bt;
+    nw->data=pre[0];
+    nw->lc=preInBuildTree(pre+1,in,i);
+    nw->rc=preInBuildTree(pre+i+1,in+i+1,n-i-1);
     return nw;
 }
-
 
 
 
