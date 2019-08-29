@@ -8,8 +8,19 @@ struct bt{
 };
 int a[N],mn=-MX,mx=MX,fg=0;
 bt* buildTree(int a[],int n,bool cmp(int,int));
-bool cmpltoh(int a,int b)   {return a<=b;}
-bool cmphtol(int a,int b)   {return a>=b;}
+bool cmpltoh(int a,int b)   {return a<=b;}	//<运算
+bool cmphtol(int a,int b)   {return a>=b;}	//>运算
+
+bool jud(bt* t,bool cmp(int,int),int r) {	//t是待判断的树，r是前驱节点的值，cmp是设置的逻辑函数
+    if (t==nullptr) return true;	//空树则true
+    bool b1,b2;
+    b1=jud(t->lc,cmp,r);			//判断左子树
+    if (b1==false||(cmp(t->data,r)&&t->data!=r))  return false;	//如果左子树不满足，或者当前值与前驱不满足逻辑运算。由于两个cmp我们设置成了包含等于，所以这里要&&t->data！=r，排除等于的情况
+    r=t->data;			//修改前驱
+    b2=jud(t->rc,cmp,r);	//如果左子树和前驱都满足，就判断右子树
+    return b2;			//返回右子树
+}
+
 void post(bt* root) {
     if (root==nullptr)   return;
     post(root->lc);
@@ -17,15 +28,7 @@ void post(bt* root) {
     if (fg==0)  {cout<<root->data;fg=1;}
     else cout<<' '<<root->data;
 }
-bool jud(bt* t,bool cmp(int,int),int r) {
-    if (t==nullptr) return true;
-    bool b1,b2;
-    b1=jud(t->lc,cmp,r);
-    if (b1==false||(cmp(t->data,r)&&t->data!=r))  return false;
-    r=t->data;
-    b2=jud(t->rc,cmp,r);
-    return b2;
-}
+
 int main()  {
     int n;
     cin>>n;
@@ -37,14 +40,14 @@ int main()  {
     else cout<<"NO"<<endl;
     return 0;
 }
-bt* buildTree(int a[],int n,bool cmp(int,int))    {
+bt* buildTree(int a[],int n,bool cmp(int,int))    {	//a是先序序列，n是节点数，cmp是排序规则
     if (n<=0)    return nullptr;
-    int i=0;
-    while (cmp(a[i],a[0])&&i<n)  i++;    //i-1是子树节点数
+    int i=0;	//i=1也可以
+    while (cmp(a[i],a[0])&&i<n)  i++;    //i-1是子树节点数，一定不要忘了i<n!!!!!!
     bt* nw= new bt;
     nw->data=a[0];
-    nw->lc=buildTree(a+1,i-1,cmp);
-    nw->rc=buildTree(a+i,n-i,cmp);
+    nw->lc=buildTree(a+1,i-1,cmp);		//建左子树
+    nw->rc=buildTree(a+i,n-i,cmp);		//建右子树
     return nw;
 }
 
