@@ -1,34 +1,3 @@
-#include <bits/stdc++.h>
-#define N 100005
-using namespace std;
-class node{
-public:
-    int add,data,ne;
-    node(): add(-2),data(-2),ne(-2) {}
-    node(int a,int b,int c): add(a),data(b),ne(c) {}
-};
-bool cmp(node a,node b) {return a.data<b.data;}
-node s[N];
-int main()  {
-    int n,be,a,b,c;
-    cin>>n>>be;
-    if (n==0)   {   //不存在特判的情况，而是有节点不在链表中
-        cout<<"0 -1\n";
-        return 0;
-    }
-    for (int i=0;i<n;i++)   {
-        cin>>a>>b>>c;
-        s[i]=node(a,b,c);
-    }
-    sort(s,s+n,cmp);
-    printf("%d %05d\n",n,s[0].add);
-    for (int i=0;i<n-1;i++)
-        printf("%05d %d %05d\n",s[i].add,s[i].data,s[i+1].add);
-    printf("%05d %d -1\n",s[n-1].add,s[n-1].data);
-    return 0;
-}
-
-
 //#include <bits/stdc++.h>
 //using namespace std;
 //struct node{
