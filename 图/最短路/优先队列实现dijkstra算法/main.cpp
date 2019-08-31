@@ -6,7 +6,7 @@ struct edge {int to,cost;};
 typedef pair<int,int> P;    //first路程长，second编号
 int d[MAX_V];
 int V;
-vector<edge> G[MAX_V];
+vector<edge> G[MAX_V];      //邻接表表示每个顶点的边
 void dijkstra(int s)  {
     priority_queue<int,vector<int>,greater<int> > que;
     fill(d,d+MAX_V,INF);
