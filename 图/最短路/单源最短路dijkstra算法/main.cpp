@@ -34,12 +34,11 @@ void dijkstra2(int s)    {
         if (v==-1)  break;
         used[v]=true;
         for (int u=0;u<V;u++)   {
-            if (d[u]<d[v]=cost[v][u])   {
-                d[u]=d[v]=cost[v][u];
+            if (d[u]<d[v]+cost[v][u])   {
+                d[u]=d[v]+cost[v][u];
                 pred[u]=v;
             }
         }
-            d[u]=min(d[u],d[v]+cost[v][u]);
     }
 }
 
