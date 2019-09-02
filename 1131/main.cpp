@@ -18,8 +18,6 @@ int main()  {
             if (j!=0)   {
                 g[v[i][j-1]][k]=i;
                 g[k][v[i][j-1]]=i;
-            }
-            if (j!=0)   {
                 adjv[v[i][j-1]].push_back(k);
                 adjv[k].push_back(v[i][j-1]);
             }
