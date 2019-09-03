@@ -39,9 +39,12 @@ void udg(int be,int en) {
     q.push(be);
     while (!q.empty())  {
         int nw=q.front();
-        used[nw]=1;
-        if (nw==en) return;
         q.pop();
+        if (used[nw])   continue;
+        used[nw]=1;
+        //cout<<nw<<endl;
+        //system("pause");;
+        if (nw==en) return;
         for (int i=0;i<(int)adjv[nw].size();i++) {
             if (!used[adjv[nw][i]]) {
                 q.push(adjv[nw][i]);
